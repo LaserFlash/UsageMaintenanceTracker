@@ -79,6 +79,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerConfig } from './hammer.config'
 import 'hammerjs';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import 'hammerjs';
     ViewUsageComponent,
     ReportIncidentComponent,
     TmpStatsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
