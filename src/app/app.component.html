@@ -31,6 +31,7 @@
       <a mat-list-item *ngFor="let routeLink of routeLinks; let i = index" [routerLink]="routeLink.link" (click)="sidenav.close()">
           {{routeLink.label}}
       </a>
+      <signup></signup>
     </mat-nav-list>
     <br />
     <button mat-button class="nav-button" (click)="toggleDark(); sidenav.close();">TOGGLE DARK THEME</button>
@@ -45,7 +46,7 @@
     </a>
     </mat-list>
   </mat-sidenav>
- 
+
   <div id="scrollId" class="sidenav-content">
    <div id="section-to-print"><router-outlet></router-outlet></div>
   </div>
@@ -63,9 +64,8 @@
                 <div fxFlex><mat-icon svgIcon="{{routeLink.link}}"></mat-icon></div>
                 <div style="margin-top: -10px;" fxFlex>{{routeLink.label}}</div>
               </div>
-            
+
         </a>
       </nav>
     </div>
 </mat-sidenav-container>
-

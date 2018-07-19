@@ -53,14 +53,11 @@ import { BreakageCardComponent } from './shared/breakage-card/breakage-card.comp
 
 import { OverlayContainer } from '@angular/cdk/overlay';
 
-import { BoatUsageService } from './boat-usage.service'
-import { BoatBreakageService } from './boat-breakage.service'
-import { SafetyDocsService } from './safety-docs.service'
-import { BoatPartsService } from './boat-parts.service'
-import { ThemeTrackerService } from './theme-tracker.service'
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { BoatUsageService } from './boat-usage.service';
+import { BoatBreakageService } from './boat-breakage.service';
+import { SafetyDocsService } from './safety-docs.service';
+import { BoatPartsService } from './boat-parts.service';
+import { ThemeTrackerService } from './theme-tracker.service';
 
 import { environment } from '../environments/environment';
 
@@ -80,6 +77,32 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerConfig } from './hammer.config'
 import 'hammerjs';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './authenticate/signup/signup.component';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import {
+  AuthMethods,
+  AuthProvider,
+  AuthProviderWithCustomConfig,
+  CredentialHelper,
+  FirebaseUIAuthConfig,
+  FirebaseUIModule
+} from 'firebaseui-angular';
+
+
+const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
+  providers: [
+    AuthProvider.Google,
+    AuthProvider.Password,
+  ],
+  method: AuthMethods.Popup,
+  credentialHelper: CredentialHelper.AccountChooser,
+  autoUpgradeAnonymousUsers: true,
+  disableSignInSuccessCallback: true
+};
+
 
 @NgModule({
   declarations: [
@@ -103,6 +126,7 @@ import { LoginComponent } from './login/login.component';
     ReportIncidentComponent,
     TmpStatsComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,6 +149,8 @@ import { LoginComponent } from './login/login.component';
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     MatSnackBarModule,
     CookieModule.forRoot(),
     DialogsModule,
@@ -136,9 +162,9 @@ import { LoginComponent } from './login/login.component';
     MatListModule,
     MatCheckboxModule,
     MatStepperModule,
-    CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'dhnh6uqep', upload_preset: 'oyywau4l' }),
+    CloudinaryModule.forRoot({ Cloudinary }, { cloud_name: 'dhnh6uqep', upload_preset: 'oyywau4l' }),
     FileUploadModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     BoatUsageService,
@@ -146,7 +172,7 @@ import { LoginComponent } from './login/login.component';
     SafetyDocsService,
     BoatPartsService,
     ThemeTrackerService,
-    {provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig}
+    { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }
   ],
   bootstrap: [AppComponent]
 })
