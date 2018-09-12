@@ -30,7 +30,7 @@
     "classlist.js": "^1.1.20150312",
     "cloudinary-core": "^2.5.0",
     "core-js": "^2.5.4",
-    "firebase": "^5.2.0",
+    "firebase": "^5.3.0",
     "firebaseui": "^3.1.1",
     "firebaseui-angular": "^3.1.1",
     "hammerjs": "^2.0.8",
@@ -61,6 +61,6 @@
     "protractor": "~5.3.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2"
+    "typescript": "^2.9.2"
   }
 }

@@ -1,14 +1,14 @@
 {
-  "indexes": [{
-    "collectionId": "boatUsage",
-    "fields": [{
-        "fieldPath": "date",
-        "mode": "DESCENDING"
-      },
-      {
-        "fieldPath": "boatID",
-        "mode": "ASCENDING"
-      }
-    ]
-  }]
+  // Example:
+  //
+  // "indexes": [
+  //   {
+  //     "collectionId": "widgets",
+  //     "fields": [
+  //       { "fieldPath": "foo", "mode": "ASCENDING" },
+  //       { "fieldPath": "bar", "mode": "DESCENDING" }
+  //     ]
+  //   }
+  // ]
+  "indexes": []
 }
