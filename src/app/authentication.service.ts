@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
 import { AngularFireAuth } from "angularfire2/auth";
 import { auth } from "firebase";
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthenticationService {
@@ -12,17 +12,22 @@ export class AuthenticationService {
     this.afAuth.authState.subscribe(data => {
       if (auth != null) {
         this.authState = true;
-        this.user = db.object("userProfile/" + data.uid).valueChanges();
+        db.object("userProfile/" + data.uid)
+          .valueChanges()
+          .subscribe(userProfile => {
+            this.user = userProfile;
+          });
       }
       this.authState = false;
     });
   }
 
-  public logout(){
-      this.afAuth.auth.signOut();
+  public logout() {
+    this.afAuth.auth.signOut();
   }
 
-  public get role(): string {
-    return this.user.role;
+  public isAdmin(): Boolean {
+    if (!this.user){ return false;}
+    return this.user.role === "admin";
   }
 }
