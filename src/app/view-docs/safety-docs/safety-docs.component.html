@@ -10,6 +10,10 @@
         </a>
       </mat-list-item>
     </mat-list>
+
+    <div *ngIf="FIREBASE_AUTH.isAdmin()">
+        <button mat-button (click)="editModeToggle()">Edit</button>
+    </div>
   </mat-card>
 </div>
 <div class="noPrint" fxFlex.gt-lg="calc(50% -1280px)" fxFlex="20" fxFlex.lt-md="2"></div>
