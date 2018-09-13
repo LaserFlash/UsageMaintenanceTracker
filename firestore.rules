@@ -3,5 +3,24 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write;
     }
+
+    match /safetyDocs/{doc} {
+        allow read;
+        allow write: if isAdmin();
+    }
+
+    match /userProfile/{profile} {
+        allow read;
+        allow write: if false;
+    }
+
+
+    function isAdmin() {
+     return 'admin' == getRole();
+    }
+
+    function getRole() {
+         return get(/databases/$(database)/documents/userProfile/$(request.auth.uid)).data.role;
+    }
   }
 }
