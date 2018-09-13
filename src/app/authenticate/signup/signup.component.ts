@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../../authentication.service';
 
 @Component({
   selector: 'signup',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private FIREBASE_AUTH: AuthenticationService) { }
 
   ngOnInit() {
+  }
+
+  logout(){
+      console.log("Logging Out");
+      this.FIREBASE_AUTH.logout();
   }
 
 }

@@ -58,6 +58,7 @@ import { BoatBreakageService } from './boat-breakage.service';
 import { SafetyDocsService } from './safety-docs.service';
 import { BoatPartsService } from './boat-parts.service';
 import { ThemeTrackerService } from './theme-tracker.service';
+import { AuthenticationService } from './authentication.service';
 
 import { environment } from '../environments/environment';
 
@@ -76,11 +77,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerConfig } from './hammer.config'
 import 'hammerjs';
-import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './authenticate/signup/signup.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {
   AuthMethods,
@@ -125,7 +126,6 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     ViewUsageComponent,
     ReportIncidentComponent,
     TmpStatsComponent,
-    LoginComponent,
     SignupComponent,
   ],
   imports: [
@@ -149,6 +149,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     MatSnackBarModule,
@@ -172,6 +173,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     SafetyDocsService,
     BoatPartsService,
     ThemeTrackerService,
+    AuthenticationService,
     { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }
   ],
   bootstrap: [AppComponent]
