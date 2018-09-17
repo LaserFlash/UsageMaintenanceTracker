@@ -7,27 +7,27 @@ import { Observable } from "rxjs";
 @Injectable()
 export class AuthenticationService {
   public authState: Boolean = false;
+  public isAdmin: Boolean = false;
   private user;
   constructor(private afAuth: AngularFireAuth, db: AngularFireDatabase) {
     this.afAuth.authState.subscribe(data => {
-      if (auth != null) {
+      if (data != null) {
+        console.log(data)
         this.authState = true;
         db.object("userProfile/" + data.uid)
           .valueChanges()
           .subscribe(userProfile => {
             this.user = userProfile;
+            this.isAdmin = this.user.role === "admin";
           });
       }
+      this.user = null;
+      this.isAdmin = false;
       this.authState = false;
     });
   }
 
   public logout() {
     this.afAuth.auth.signOut();
-  }
-
-  public isAdmin(): Boolean {
-    if (!this.user){ return false;}
-    return this.user.role === "admin";
   }
 }

@@ -21,6 +21,10 @@ export class SafetyDocsComponent implements OnInit {
   ngOnInit() {
   }
 
+  isAdmin(): Boolean {
+    return this.FIREBASE_AUTH.isAdmin;
+  }
+
   editModeToggle() {
     this.editMode = !this.editMode;
   }

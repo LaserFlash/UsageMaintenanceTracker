@@ -15,7 +15,7 @@
       <button *ngIf="editMode" mat-icon-button (click)="addItem()"><mat-icon>add</mat-icon></button>
     </mat-list>
 
-    <div *ngIf="FIREBASE_AUTH.isAdmin()">
+    <div *ngIf="FIREBASE_AUTH.isAdmin">
       <button mat-button (click)="editModeToggle()">Edit Mode</button>
     </div>
   </mat-card>
