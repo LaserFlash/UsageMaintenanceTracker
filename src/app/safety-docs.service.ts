@@ -33,5 +33,16 @@ export class SafetyDocsService {
       });
     };
   }
+
+  public addOrUpdateDoc(doc: DocLink) {
+    if (doc.id) {
+      this.itemsCollection.doc(doc.id).set({ url: doc.url, title: doc.title }, { merge: true });
+    } else {
+      this.itemsCollection.add({ url: doc.url, title: doc.title });
+    }
+  }
+
+  public deleteDoc(doc: DocLink) {
+    this.itemsCollection.doc(doc.id).delete();
   }
 }
