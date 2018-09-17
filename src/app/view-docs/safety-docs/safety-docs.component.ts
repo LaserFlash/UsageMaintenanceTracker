@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../authentication.service';
 export class SafetyDocsComponent implements OnInit {
   links: DocLink[];
   editMode: Boolean = false;
-  constructor(private safetyDocsService: SafetyDocsService,private FIREBASE_AUTH: AuthenticationService) {
+  constructor(private safetyDocsService: SafetyDocsService, private FIREBASE_AUTH: AuthenticationService) {
     this.links = safetyDocsService.safetyDocLinks;
   }
 
@@ -20,7 +20,18 @@ export class SafetyDocsComponent implements OnInit {
   }
 
   editModeToggle() {
-      this.editMode = !this.editMode;
+    this.editMode = !this.editMode;
   }
 
+  addItem() {
+    this.links.push(new DocLink());
+  }
+
+  setDocItem(doc: DocLink) {
+    this.safetyDocsService.addOrUpdateDoc(doc);
+  }
+
+  deleteDocItem(doc: DocLink) {
+    this.safetyDocsService.deleteDoc(doc);
+  }
 }

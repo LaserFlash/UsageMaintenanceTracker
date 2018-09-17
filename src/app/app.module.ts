@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -91,6 +92,7 @@ import {
   FirebaseUIAuthConfig,
   FirebaseUIModule
 } from 'firebaseui-angular';
+import { InlineEditInputComponent } from './shared/inline-edit-input/inline-edit-input.component';
 
 
 const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
@@ -112,7 +114,6 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     ViewComponent,
     StatsComponent,
     DocsComponent,
-
     ReportIssueComponent,
     ViewIssuesComponent,
     ViewFixedComponent,
@@ -127,6 +128,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     ReportIncidentComponent,
     TmpStatsComponent,
     SignupComponent,
+    InlineEditInputComponent
   ],
   imports: [
     BrowserModule,
@@ -145,6 +147,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    FormsModule,
     MatSelectModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
