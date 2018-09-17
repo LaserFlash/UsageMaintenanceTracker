@@ -10,7 +10,8 @@ import { DocLinkID } from '../../Utils/objects/docLink';
 export class InlineEditInputComponent implements OnInit {
 
   @Input() value: DocLinkID;
-  @Output() update: EventEmitter<DocLinkID> = new EventEmitter<DocLinkID>();
+  @Output() update: EventEmitter<{ updatedDoc: DocLinkID, originalDoc: DocLinkID }>
+    = new EventEmitter<{ updatedDoc: DocLinkID, originalDoc: DocLinkID }>();
   @Output() delete: EventEmitter<DocLinkID> = new EventEmitter<DocLinkID>();
 
   updatedDoc: DocLinkID;
