@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DocLink } from '../../Utils/objects/docLink';
+import { DocLinkID } from '../../Utils/objects/docLink';
 
-import { SafetyDocsService } from '../../safety-docs.service'
+import { SafetyDocsService } from '../../safety-docs.service';
 import { AuthenticationService } from '../../authentication.service';
+
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-safety-docs',
@@ -10,9 +12,9 @@ import { AuthenticationService } from '../../authentication.service';
   styleUrls: ['./safety-docs.component.css']
 })
 export class SafetyDocsComponent implements OnInit {
-  links: DocLink[];
+  links: DocLinkID[];
   editMode: Boolean = false;
-  constructor(private safetyDocsService: SafetyDocsService, private FIREBASE_AUTH: AuthenticationService) {
+  constructor(private safetyDocsService: SafetyDocsService, private FIREBASE_AUTH: AuthenticationService, private snackBar: MatSnackBar, ) {
     this.links = safetyDocsService.safetyDocLinks;
   }
 
@@ -24,14 +26,27 @@ export class SafetyDocsComponent implements OnInit {
   }
 
   addItem() {
-    this.links.push(new DocLink());
+    this.links.push(new DocLinkID('', ''));
   }
 
-  setDocItem(doc: DocLink) {
-    this.safetyDocsService.addOrUpdateDoc(doc);
+  setDocItem(updatedOriginalDocs) {
+    const updatedDoc = updatedOriginalDocs.updatedDoc;
+    const originalDoc = updatedOriginalDocs.originalDoc;
+    this.safetyDocsService.addOrUpdateDoc(updatedDoc);
+    this.snackBar.open('Modified the document', 'Undo', {
+      duration: 2000,
+    }).onAction().subscribe(() => {
+      this.safetyDocsService.restore(originalDoc);
+    });
+
   }
 
-  deleteDocItem(doc: DocLink) {
+  deleteDocItem(doc: DocLinkID) {
     this.safetyDocsService.deleteDoc(doc);
+    this.snackBar.open('Deleted: ' + doc.title, 'Undo', {
+      duration: 2000,
+    }).onAction().subscribe(() => {
+      this.safetyDocsService.restore(doc);
+    });
   }
 }

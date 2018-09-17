@@ -6,6 +6,9 @@ export class DocLink {
   constructor(
     public url: string,
     public title: string,
-    public id: string
   ) { }
+}
+
+export class DocLinkID extends DocLink {
+  id: string;
 }

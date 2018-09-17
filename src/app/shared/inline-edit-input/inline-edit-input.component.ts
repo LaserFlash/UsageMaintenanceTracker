@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DocLink } from '../../Utils/objects/docLink';
+import { DocLinkID } from '../../Utils/objects/docLink';
 
 @Component({
   selector: 'app-inline-edit-input',
@@ -9,20 +9,23 @@ import { DocLink } from '../../Utils/objects/docLink';
 })
 export class InlineEditInputComponent implements OnInit {
 
-  @Input() value: DocLink;
-  @Output() update: EventEmitter<DocLink> = new EventEmitter<DocLink>();
-  @Output() delete: EventEmitter<DocLink> = new EventEmitter<DocLink>();
+  @Input() value: DocLinkID;
+  @Output() update: EventEmitter<DocLinkID> = new EventEmitter<DocLinkID>();
+  @Output() delete: EventEmitter<DocLinkID> = new EventEmitter<DocLinkID>();
 
+  updatedDoc: DocLinkID;
+  title: string;
   remove = false;
   done = false;
   constructor() { }
 
   ngOnInit() {
+    this.updatedDoc = Object.assign({}, this.value);
   }
 
   submitEdit() {
     this.done = true;
-    this.update.emit(this.value);
+    this.update.emit({ updatedDoc: this.updatedDoc, originalDoc: this.value });
   }
 
   submitRemove() {

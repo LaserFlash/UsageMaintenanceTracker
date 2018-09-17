@@ -2,10 +2,10 @@
   <mat-icon mat-list-icon>insert_drive_file</mat-icon>
   <div fxLayout='row wrap' fxLayoutGap="20px" class="link-inputs">
     <mat-form-field>
-      <input matInput placeholder="Title"  [(ngModel)]="value.title" />
+      <input matInput placeholder="Title" [(ngModel)]="updatedDoc.title" />
     </mat-form-field>
       <mat-form-field>
-        <input placeholder="URL" matInput [(ngModel)]="value.url" />
+        <input placeholder="URL" matInput [(ngModel)]="updatedDoc.url" />
    </mat-form-field>
   </div>
   <button mat-icon-button (click)="submitRemove()"><mat-icon>remove</mat-icon></button>
