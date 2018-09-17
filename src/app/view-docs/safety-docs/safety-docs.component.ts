@@ -32,7 +32,7 @@ export class SafetyDocsComponent implements OnInit {
   setDocItem(updatedOriginalDocs) {
     const updatedDoc = updatedOriginalDocs.updatedDoc;
     const originalDoc = updatedOriginalDocs.originalDoc;
-    this.safetyDocsService.addOrUpdateDoc(updatedDoc);
+    originalDoc.id = this.safetyDocsService.addOrUpdateDoc(updatedDoc);
     this.snackBar.open('Modified the document', 'Undo', {
       duration: 2000,
     }).onAction().subscribe(() => {

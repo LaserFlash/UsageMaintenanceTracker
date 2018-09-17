@@ -34,12 +34,14 @@ export class SafetyDocsService {
     });
   }
 
-  public addOrUpdateDoc(doc: DocLinkID) {
-    if (doc.id) {
-      this.itemsCollection.doc(doc.id).set({ url: doc.url, title: doc.title }, { merge: true });
+  public addOrUpdateDoc(doc: DocLinkID): string {
+    if (!doc.id) { doc.id = this.db.createId(); }
+    if (doc.url === '' && doc.title === '') {
+      this.deleteDoc(doc);
     } else {
-      this.itemsCollection.add({ url: doc.url, title: doc.title });
+      this.itemsCollection.doc(doc.id).set({ url: doc.url, title: doc.title }, { merge: true });
     }
+    return doc.id;
   }
 
   public deleteDoc(doc: DocLinkID) {
@@ -47,6 +49,10 @@ export class SafetyDocsService {
   }
 
   public restore(doc: DocLinkID) {
-    this.itemsCollection.doc(doc.id).set({ url: doc.url, title: doc.title }, { merge: true });
+    if (doc.url === '' && doc.title === '') {
+      this.deleteDoc(doc);
+    } else {
+      this.itemsCollection.doc(doc.id).set({ url: doc.url, title: doc.title }, { merge: true });
+    }
   }
 }
