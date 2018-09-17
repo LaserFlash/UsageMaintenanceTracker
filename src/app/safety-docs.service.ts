@@ -3,6 +3,7 @@ import { DocLink } from './Utils/objects/docLink';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 /**
@@ -14,11 +15,23 @@ export class SafetyDocsService {
 
   constructor(private db: AngularFirestore) {
     this.itemsCollection = db.collection<DocLink>('/safetyDocs', ref => ref.orderBy('title', 'desc'));
-    this.itemsCollection.valueChanges().subscribe(val => {
+    let items: Observable<DocLink[]>;
+    items = this.itemsCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(action => {
+          const data = action.payload.doc.data() as DocLink;
+          const id = action.payload.doc.id;
+          return { ...data, id };
+        });
+      })
+    );
+
+    items.subscribe((doc) => {
       this.safetyDocLinks.length = 0;
-      val.forEach(element => {
+      doc.forEach(element => {
         this.safetyDocLinks.push(element);
       });
-    });
+    };
+  }
   }
 }
