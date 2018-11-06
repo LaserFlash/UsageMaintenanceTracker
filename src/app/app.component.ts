@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
   { label: 'Docs', link: 'docs'},
 ];
 
+  adminLink = {label: 'Admin Panel', link: 'admin'}
+
   constructor(private themeTracker: ThemeTrackerService, private router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     /* Apply theme at start */
     this.isDarkTheme = themeTracker.isDark;

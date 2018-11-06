@@ -93,6 +93,7 @@ import {
   FirebaseUIModule
 } from 'firebaseui-angular';
 import { InlineEditInputComponent } from './shared/inline-edit-input/inline-edit-input.component';
+import { AdminComponent} from './admin/admin.component';
 
 
 const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
@@ -128,7 +129,8 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     ReportIncidentComponent,
     TmpStatsComponent,
     SignupComponent,
-    InlineEditInputComponent
+    InlineEditInputComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

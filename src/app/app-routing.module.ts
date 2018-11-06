@@ -18,6 +18,8 @@ import { DocsComponent } from './view-docs/docs.component';
 import { BoatPartsComponent } from './view-docs/boat-parts/boat-parts.component';
 import { SafetyDocsComponent } from './view-docs/safety-docs/safety-docs.component';
 
+import { AdminComponent} from './admin/admin.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'report', pathMatch: 'full' },
@@ -60,6 +62,7 @@ const routes: Routes = [
       { path: '**', redirectTo: '' },
     ]
   },
+  { path: 'admin', component: AdminComponent },
   { path: '**', redirectTo: 'report' },
 ];
 

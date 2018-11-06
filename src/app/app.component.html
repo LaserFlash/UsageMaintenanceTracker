@@ -31,6 +31,11 @@
       <a mat-list-item *ngFor="let routeLink of routeLinks; let i = index" [routerLink]="routeLink.link" (click)="sidenav.close()">
           {{routeLink.label}}
       </a>
+      <a mat-list-item
+          [routerLink]="adminLink.link"
+          (click)="sidenav.close()">
+          {{adminLink.label}}
+      </a>
       <signup></signup>
     </mat-nav-list>
     <br />
