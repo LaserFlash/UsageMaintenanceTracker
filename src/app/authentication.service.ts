@@ -12,14 +12,15 @@ export class AuthenticationService {
   constructor(private afAuth: AngularFireAuth, db: AngularFireDatabase) {
     this.afAuth.authState.subscribe(data => {
       if (data != null) {
-        console.log(data)
         this.authState = true;
         db.object("userProfile/" + data.uid)
           .valueChanges()
-          .subscribe(userProfile => {
-            this.user = userProfile;
+          .subscribe((res) => {
+            console.log(res)
+            this.user = res;
             this.isAdmin = this.user.role === "admin";
           });
+
       }
       this.user = null;
       this.isAdmin = false;
