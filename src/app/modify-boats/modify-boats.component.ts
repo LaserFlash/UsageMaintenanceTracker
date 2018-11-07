@@ -12,7 +12,9 @@ export class ModifyBoatsComponent implements OnInit {
 
   boatInfo: BoatID[];
   constructor(private BOATS: KnownBoatsService, private snackBar: MatSnackBar) {
-    this.boatInfo = BOATS.boatInformation;
+    BOATS.boatInformation.subscribe(boats => {
+      this.boatInfo = boats;
+    });
   }
 
   ngOnInit() {

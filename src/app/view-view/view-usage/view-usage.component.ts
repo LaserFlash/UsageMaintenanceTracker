@@ -17,7 +17,11 @@ export class ViewUsageComponent implements OnInit {
   constructor(
     private usageService: BoatUsageService,
     private BOATS: KnownBoatsService
-  ) {this.boats = BOATS.boatInformation}
+  ) {
+    BOATS.boatInformation.subscribe( boats => {
+      this.boats = boats;
+    });
+  }
 
   ngOnInit() {
   }

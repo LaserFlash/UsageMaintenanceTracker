@@ -83,7 +83,13 @@ export class ReportIssueComponent implements OnInit {
     private BOATS: KnownBoatsService,
     private dialogsService: DialogsService,
     private cloudinary: Cloudinary,
-  ) {      this.boats = BOATS.boatInformation; }
+  ) {
+    BOATS.boatInformation.subscribe( boats => {
+      this.boats = boats.filter(boat =>{
+        return boat.selectable;
+      });
+    });
+  }
 
 
   ngOnInit() {

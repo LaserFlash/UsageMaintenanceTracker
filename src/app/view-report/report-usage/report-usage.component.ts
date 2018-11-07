@@ -52,7 +52,11 @@ export class ReportUsageComponent {
     ) {
       this.dateAdapter.setLocale('en-nz');
       this.createForm();
-      this.boats = BOATS.boatInformation;
+      BOATS.boatInformation.subscribe((boats) => {
+        this.boats = boats.filter((boat) => {
+          return boat.selectable;
+        });
+      })
     }
 
   /** Build the form */

@@ -47,8 +47,10 @@ export class UsageGraphsComponent implements OnInit {
     this.usageService.items.subscribe(() => {
       this.chartData = [{ data: this.usageService.usageTimes, label: this.dataLabel}];
     });
-    this.chartLabels = this.BOATS.boatInformation.map((boat) => {
-      return boat.name;
+    this.BOATS.boatInformation.subscribe( boats => {
+        this.chartLabels = boats.map((boat) => {
+           return boat.name;
+         });
     });
   }
 

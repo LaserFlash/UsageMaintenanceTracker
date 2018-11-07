@@ -4,6 +4,7 @@ import { Boat, BoatID } from './Utils/objects/boat';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,9 @@ import { map } from 'rxjs/operators';
 
 export class KnownBoatsService {
   private itemsCollection: AngularFirestoreCollection<Boat>;
-  public boatInformation: BoatID[] = [];
+  private boats: BoatID[];
+  public boatInformation: BehaviorSubject<BoatID[]> = new BehaviorSubject([]);
+
 
   constructor(private db: AngularFirestore) {
     this.itemsCollection = db.collection<Boat>('/boats', ref => ref.orderBy('name', 'asc'));
@@ -27,10 +30,15 @@ export class KnownBoatsService {
     );
 
     items.subscribe((doc) => {
-      this.boatInformation.length = 0;
+      const currentBoats: BoatID[] = [];
       doc.forEach(element => {
-        this.boatInformation.push(element);
+        currentBoats.push(element);
       });
+      this.boatInformation.next(currentBoats);
+    });
+
+    this.boatInformation.subscribe((boats) => {
+      this.boats = boats;
     });
   }
 
@@ -54,7 +62,7 @@ export class KnownBoatsService {
   }
 
   getBoatName(key: string): string {
-    const boatFound =  this.boatInformation.find((boat) => {
+    const boatFound =  this.boats.find((boat) => {
       return boat.id === String(key);
     });
     if (boatFound) {
