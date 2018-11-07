@@ -8,6 +8,6 @@ export class Boat {
   ) { }
 }
 
-export class BoatKey extends Boat {
-  key: number;
+export class BoatID extends Boat {
+  id: string;
 }

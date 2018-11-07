@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Boat } from '../Utils/objects/boat';
-
+import { Boat, BoatID } from '../Utils/objects/boat';
+import { KnownBoatsService } from '../known-boats.service';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -10,11 +10,10 @@ import { MatSnackBar } from '@angular/material';
 })
 export class ModifyBoatsComponent implements OnInit {
 
-  boatInfo = [
-    { name: "Boat 1", selectable: true},
-    { name: "Boat 2", selectable: false},
-  ]
-  constructor() { }
+  boatInfo: BoatID[];
+  constructor(private BOATS: KnownBoatsService, private snackBar: MatSnackBar) {
+    this.boatInfo = BOATS.boatInformation;
+  }
 
   ngOnInit() {
   }
@@ -24,17 +23,14 @@ export class ModifyBoatsComponent implements OnInit {
   }
 
   setDocItem(updatedOriginalDocs) {
-    /*
     const updatedDoc = updatedOriginalDocs.updatedDoc;
     const originalDoc = updatedOriginalDocs.originalDoc;
-    originalDoc.id = this.safetyDocsService.addOrUpdateDoc(updatedDoc);
+    originalDoc.id = this.BOATS.addOrUpdateDoc(updatedDoc);
     this.snackBar.open('Modified the boat', 'Undo', {
       duration: 2000,
     }).onAction().subscribe(() => {
-      this.safetyDocsService.restore(originalDoc);
+      this.BOATS.restore(originalDoc);
     });
-    */
-
   }
 
 }
