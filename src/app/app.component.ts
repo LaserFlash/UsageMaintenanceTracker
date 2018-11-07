@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { ThemeTrackerService } from './theme-tracker.service'
+import { ThemeTrackerService } from './theme-tracker.service';
+import { AuthenticationService } from './authentication.service';
 
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
 
   adminLink = {label: 'Admin Panel', link: 'admin'}
 
-  constructor(private themeTracker: ThemeTrackerService, private router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(private themeTracker: ThemeTrackerService, private router: Router, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private AUTH: AuthenticationService) {
     /* Apply theme at start */
     this.isDarkTheme = themeTracker.isDark;
 

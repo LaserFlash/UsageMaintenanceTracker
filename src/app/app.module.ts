@@ -28,6 +28,7 @@ import { MatProgressBarModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { DialogsModule } from './shared/dialog/dialogs.module';
 
@@ -153,6 +154,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MatTooltipModule,
     FormsModule,
     MatSelectModule,
     FlexLayoutModule,

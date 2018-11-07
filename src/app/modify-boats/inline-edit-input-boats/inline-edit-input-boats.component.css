@@ -27,3 +27,11 @@ a:hover.app-dark{
 .link-inputs{
   padding-right: 16px;
 }
+
+mat-form-field {
+  margin-bottom: -3ex !important;
+}
+mat-checkbox {
+    padding-top: 3ex !important;
+    padding-bottom: 6px !important;
+}

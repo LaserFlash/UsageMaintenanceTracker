@@ -2,7 +2,7 @@
 <div fxFlex.gt-lg="1280px" fxFlex>
   <mat-card class="form">
     <mat-list>
-      <h3 mat-subheader>Boats</h3>
+      <h3 mat-subheader>Boat Database</h3>
       <div *ngFor="let info of boatInfo">
         <app-inline-edit-input-boats [value]="info" (update)="setDocItem($event)"></app-inline-edit-input-boats>
       </div>
