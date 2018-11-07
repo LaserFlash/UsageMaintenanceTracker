@@ -32,7 +32,9 @@ export class SortFilterBarComponent implements OnInit {
 
   constructor(private breakageService: BoatBreakageService, private BOATS: KnownBoatsService) { }
   ngOnInit() {
-    this.filterList = this.BOATS.boatInformation;
+    this.BOATS.boatInformation.subscribe(boats => {
+      this.filterList = boats;
+    });
     this.resetFilter()
   }
 
