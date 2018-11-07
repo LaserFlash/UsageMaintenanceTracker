@@ -63,15 +63,4 @@ export class KnownBoatsService {
       return "Unknown Name";
     }
   }
-
-  keyFromName(name: string): string{
-    const boatFound =  this.boatInformation.find((boat) => {
-      return boat.name === name;
-    });
-    if (boatFound) {
-      return boatFound.id;
-    } else {
-      return "Unknown Name";
-    }
-  }
 }
