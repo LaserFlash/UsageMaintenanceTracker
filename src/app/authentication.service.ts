@@ -16,7 +16,6 @@ export class AuthenticationService {
         db.object("userProfile/" + data.uid)
           .valueChanges()
           .subscribe((res) => {
-            console.log(res)
             this.user = res;
             this.isAdmin = this.user.role === "admin";
           });
