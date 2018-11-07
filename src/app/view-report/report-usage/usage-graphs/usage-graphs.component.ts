@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UsageInfo } from '../../../Utils/objects/usageInfo';
-import { Boats, UserFriendlyBoats } from '../../../Utils/menuNames'
 
 import { BoatUsageService } from '../../../boat-usage.service'
-import { BoatNameConversionHelper } from '../../../Utils/nameConversion'
+import { KnownBoatsService } from '../../../known-boats.service';
 
 
 @Component({
@@ -32,20 +31,14 @@ export class UsageGraphsComponent implements OnInit {
   };
 
   // Only use boat data for boats with a userfriendly name
-  chartLabels: string[] = UserFriendlyBoats.filter((s, i) => {
-    let yes = false;
-    Boats.forEach(j => {
-      yes ? true : yes = i === j;
-    })
-    return yes;
-  });
+  chartLabels: string[];
 
   public chartType = 'bar';
   public chartLegend = true;
 
   usageLastMonth: number[];
 
-  constructor(private usageService: BoatUsageService) {
+  constructor(private usageService: BoatUsageService, private BOATS: KnownBoatsService) {
     this.usageLastMonth = usageService.lastMonthUsageEachBoat;
   }
 
@@ -54,10 +47,13 @@ export class UsageGraphsComponent implements OnInit {
     this.usageService.items.subscribe(() => {
       this.chartData = [{ data: this.usageService.usageTimes, label: this.dataLabel}];
     });
+    this.chartLabels = this.BOATS.boatInformation.map((boat) => {
+      return boat.name;
+    });
   }
 
   private getBoatName(v) {
-    return BoatNameConversionHelper.boatNameFromNumber(v);
+    return this.BOATS.getBoatName(v);
   }
 
 }

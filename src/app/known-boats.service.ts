@@ -4,6 +4,7 @@ import { Boat, BoatID } from './Utils/objects/boat';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,7 @@ export class KnownBoatsService {
 
   constructor(private db: AngularFirestore) {
     this.itemsCollection = db.collection<Boat>('/boats', ref => ref.orderBy('name', 'asc'));
-    let items: Observable<BoatKey[]>;
+    let items: Observable<BoatID[]>;
     items = this.itemsCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(action => {
@@ -38,5 +39,39 @@ export class KnownBoatsService {
     this.itemsCollection.doc(boat.id).set({ name: boat.name, selectable: boat.selectable }, { merge: true });
 
     return boat.id;
+  }
+
+  public restore(boat: BoatID) {
+    if (boat.name === '') {
+      this.deleteDoc(boat);
+    } else {
+      this.itemsCollection.doc(boat.id).set({ name: boat.name, selectable: boat.selectable }, { merge: true });
+    }
+  }
+
+  public deleteDoc(boat: BoatID) {
+    this.itemsCollection.doc(boat.id).delete();
+  }
+
+  getBoatName(key: string): string {
+    const boatFound =  this.boatInformation.find((boat) => {
+      return boat.id === String(key);
+    });
+    if (boatFound) {
+      return boatFound.name;
+    } else {
+      return "Unknown Name";
+    }
+  }
+
+  keyFromName(name: string): string{
+    const boatFound =  this.boatInformation.find((boat) => {
+      return boat.name === name;
+    });
+    if (boatFound) {
+      return boatFound.id;
+    } else {
+      return "Unknown Name";
+    }
   }
 }

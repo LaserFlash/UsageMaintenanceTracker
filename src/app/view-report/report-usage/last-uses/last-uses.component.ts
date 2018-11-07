@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { BoatUsageService } from '../../../boat-usage.service'
-import { UsageInfo } from '../../../Utils/objects/usageInfo'
-
-import { BoatNameConversionHelper } from '../../../Utils/nameConversion'
+import { BoatUsageService } from '../../../boat-usage.service';
+import { KnownBoatsService } from '../../../known-boats.service';
+import { UsageInfo } from '../../../Utils/objects/usageInfo';
 
 @Component({
   selector: 'last-uses',
@@ -14,13 +13,13 @@ export class LastUsesComponent implements OnInit {
 
   usage: UsageInfo[];
 
-  constructor(private boatUsageService: BoatUsageService) {
+  constructor(private boatUsageService: BoatUsageService, private BOATS: KnownBoatsService) {
     this.usage = boatUsageService.lastUsageEachBoat;
   }
 
   ngOnInit() {}
 
   private getBoatName(v) {
-    return BoatNameConversionHelper.boatNameFromNumber(v);
+    return this.BOATS.getBoatName(v);
   }
 }

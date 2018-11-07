@@ -19,7 +19,7 @@ export class ModifyBoatsComponent implements OnInit {
   }
 
   addItem() {
-    this.boatInfo.push(new Boat('', true));
+    this.boatInfo.push(new BoatID('', true));
   }
 
   setDocItem(updatedOriginalDocs) {

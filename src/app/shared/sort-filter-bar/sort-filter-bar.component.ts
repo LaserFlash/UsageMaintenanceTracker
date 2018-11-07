@@ -3,7 +3,7 @@ import { BreakageInfo } from '../../Utils/objects/breakageInfo';
 import { BoatBreakageService } from '../../boat-breakage.service'
 
 import { UserFriendlyBoats, Boats, Parts } from '../../Utils/menuNames'
-import { BoatNameConversionHelper } from '../../Utils/nameConversion'
+import { KnownBoatsService } from '../../known-boats.service'
 
 @Component({
   selector: 'sort-filter-bar',
@@ -36,7 +36,7 @@ export class SortFilterBarComponent implements OnInit {
   endMaxDate: Date = new Date();
   endMinDate: Date = new Date(1997, 8, 27);
 
-  constructor(private breakageService: BoatBreakageService) { }
+  constructor(private breakageService: BoatBreakageService, private BOATS: KnownBoatsService) { }
   ngOnInit() {
     this.resetFilter()
   }
@@ -133,7 +133,7 @@ export class SortFilterBarComponent implements OnInit {
     }
     return this.appliedFilters.some(
       filter => {
-        if (item.boatID === BoatNameConversionHelper.numberFromUserFriendlyName(filter)) {
+        if (item.boatID === this.BOATS.keyFromName(filter)) {
           return true;
         }
       });
