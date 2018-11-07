@@ -11,8 +11,8 @@
                 <td>
                   <mat-radio-group class="radio-group" formControlName="boatID" required>
                     <label> Boat Number</label>
-                    <mat-radio-button class="radio-button" *ngFor="let id of boats" [value]="id">
-                      {{id}}
+                    <mat-radio-button class="radio-button" *ngFor="let boat of boats" [value]="boat.id">
+                      {{boat.name}}
                     </mat-radio-button>
                     <mat-error *ngIf="formErrors.boatID">
                       {{formErrors.boatID}}
