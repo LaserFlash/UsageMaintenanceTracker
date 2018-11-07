@@ -7,4 +7,5 @@
       ".write": "$uid === auth.uid"
       }
   	}
+  }
 }
