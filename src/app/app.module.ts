@@ -29,6 +29,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { DialogsModule } from './shared/dialog/dialogs.module';
 
@@ -92,6 +93,7 @@ import { InlineEditInputComponent } from './shared/inline-edit-input/inline-edit
 import { AdminComponent } from './admin/admin.component';
 import { ModifyBoatsComponent } from './modify-boats/modify-boats.component';
 import { InlineEditInputBoatsComponent } from './modify-boats/inline-edit-input-boats/inline-edit-input-boats.component';
+import { ElevateUserComponent } from './elevate-user/elevate-user.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -131,7 +133,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     InlineEditInputComponent,
     InlineEditInputBoatsComponent,
     AdminComponent,
-    ModifyBoatsComponent
+    ModifyBoatsComponent,
+    ElevateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -166,6 +169,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MatChipsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
     ChartsModule,
     MatListModule,
     MatCheckboxModule,

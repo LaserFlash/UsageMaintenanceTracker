@@ -22,7 +22,6 @@ export class AuthenticationService {
             this.user = res;
             this.isAdmin.next(this.user.role === "admin");
           });
-
       }
     });
   }
