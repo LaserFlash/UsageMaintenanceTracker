@@ -55,7 +55,6 @@ export class UsageGraphsComponent implements OnInit {
       });
       this.chartData[0].data = builtDataList;
       this.chartLabels = builtLabelList;
-      console.log(builtDataList);
     });
 
   }
