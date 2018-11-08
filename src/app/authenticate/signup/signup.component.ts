@@ -12,7 +12,7 @@ export class SignupComponent implements OnInit {
   constructor(public FIREBASE_AUTH: AuthenticationService) {
     FIREBASE_AUTH.authState.subscribe(bool => {
       this.authState = bool;
-    })
+    });
   }
 
   ngOnInit() {

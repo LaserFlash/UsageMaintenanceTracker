@@ -11,6 +11,9 @@ export class AuthenticationService {
   private user;
   constructor(private afAuth: AngularFireAuth, db: AngularFireDatabase) {
     this.afAuth.authState.subscribe(data => {
+      this.user = null;
+      this.isAdmin.next(false);
+      this.authState.next(false);
       if (data != null) {
         this.authState.next(true);
         db.object("userProfile/" + data.uid)
@@ -21,9 +24,6 @@ export class AuthenticationService {
           });
 
       }
-      this.user = null;
-      this.isAdmin.next(false);
-      this.authState.next(false);
     });
   }
 
