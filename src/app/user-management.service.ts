@@ -14,7 +14,7 @@ export class UserManagementService {
   public users: BehaviorSubject<User[]> = new BehaviorSubject([]);
 
   constructor(private DB: AngularFireDatabase, private AUTH: AuthenticationService) {
-    const usersRaw: any;
+    let usersRaw: any;
     AUTH.authState.subscribe(() => {
       usersRaw = DB.list('/userProfile/')
         .snapshotChanges().pipe(map(items => {
@@ -37,3 +37,4 @@ export class UserManagementService {
   downgradeToUser(key: string) {
     this.DB.object('/userProfile/' + key).update({ role: 'user' });
   }
+}
