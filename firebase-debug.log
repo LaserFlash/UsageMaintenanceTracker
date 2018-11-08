@@ -1,0 +1,19 @@
+[debug] [2018-11-08T02:47:51.466Z] ----------------------------------------------------------------------
+[debug] [2018-11-08T02:47:51.468Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\brynt\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only=functions
+[debug] [2018-11-08T02:47:51.469Z] CLI Version:   6.0.1
+[debug] [2018-11-08T02:47:51.469Z] Platform:      win32
+[debug] [2018-11-08T02:47:51.469Z] Node Version:  v10.13.0
+[debug] [2018-11-08T02:47:51.471Z] Time:          Thu Nov 08 2018 15:47:51 GMT+1300 (New Zealand Daylight Time)
+[debug] [2018-11-08T02:47:51.471Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-08T02:47:51.485Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-08T02:47:51.486Z] > authorizing via signed-in user
+[debug] [2018-11-08T02:47:51.486Z] [iam] checking project breakagestest for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2018-11-08T02:47:51.488Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/breakagestest:testIamPermissions  
+
+[debug] [2018-11-08T02:47:52.964Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'breakagestest'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "%RESOURCE_DIR%" run lint

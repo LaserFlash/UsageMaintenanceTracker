@@ -29,6 +29,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { DialogsModule } from './shared/dialog/dialogs.module';
 
@@ -85,29 +86,26 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import {
-  AuthMethods,
-  AuthProvider,
-  AuthProviderWithCustomConfig,
-  CredentialHelper,
-  FirebaseUIAuthConfig,
-  FirebaseUIModule
-} from 'firebaseui-angular';
+
+import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
+
 import { InlineEditInputComponent } from './shared/inline-edit-input/inline-edit-input.component';
-import { AdminComponent} from './admin/admin.component';
+import { AdminComponent } from './admin/admin.component';
 import { ModifyBoatsComponent } from './modify-boats/modify-boats.component';
 import { InlineEditInputBoatsComponent } from './modify-boats/inline-edit-input-boats/inline-edit-input-boats.component';
+import { ElevateUserComponent } from './elevate-user/elevate-user.component';
 
 
-const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
-  providers: [
-    AuthProvider.Google,
-    AuthProvider.Password,
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
-  method: AuthMethods.Popup,
-  credentialHelper: CredentialHelper.AccountChooser,
-  autoUpgradeAnonymousUsers: true,
-  disableSignInSuccessCallback: true
+  tosUrl: '',
+  privacyPolicyUrl: '',
+  credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+  autoUpgradeAnonymousUsers: true
 };
 
 
@@ -135,7 +133,8 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     InlineEditInputComponent,
     InlineEditInputBoatsComponent,
     AdminComponent,
-    ModifyBoatsComponent
+    ModifyBoatsComponent,
+    ElevateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -170,6 +169,7 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     MatChipsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
     ChartsModule,
     MatListModule,
     MatCheckboxModule,
