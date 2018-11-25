@@ -13,7 +13,7 @@
         <img matListAvatar src="assets/images/boat_{{item.boat}}.png" onerror="if (this.src !== 'assets/images/noImage.png') this.src = 'assets/images/noImage.png';" alt={{getBoatName(item.boat)}} />
         <h3 matLine> {{getBoatName(item.boat)}} </h3>
         <p matLine>
-          <span mat-line>{{Math.round(item.duration * 100) / 100}} hours</span>
+          <span mat-line>{{item.duration}} hours</span>
         </p>
       </mat-list-item>
     </mat-list>

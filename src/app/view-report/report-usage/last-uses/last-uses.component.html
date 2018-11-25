@@ -6,7 +6,7 @@
         <img matListAvatar *ngIf="getBoatName(u.boatID)" src="assets/images/boat_{{u.boatID}}.png" onerror="if (this.src !== 'assets/images/noImage.png') this.src = 'assets/images/noImage.png';" alt={{getBoatName(u.boatID)}} />
         <h3 matLine> {{getBoatName(u.boatID)}} </h3>
         <p matLine>
-          <span mat-line>{{Math.round(u.duration * 100) / 100}} hours</span>
+          <span mat-line>{{u.duration}} hours</span>
           <span mat-line>{{u.date.toDate() | date}} </span>
         </p>
       </mat-list-item>
