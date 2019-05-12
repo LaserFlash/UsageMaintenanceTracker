@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase } from "angularfire2/database";
-import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireDatabase } from "@angular/fire/database";
+import { AngularFireAuth } from "@angular/fire/auth";
 import { auth } from "firebase";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
