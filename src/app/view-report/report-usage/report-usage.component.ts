@@ -100,7 +100,7 @@ export class ReportUsageComponent {
       const usage = new UsageInfo(
         this.usageForm.get('boatID').value,
         this.usageForm.get('duration').value,
-        this.usageForm.get('date').value
+        this.usageForm.get('date').value.toDate()
       )
 
       this.usageService.addUsageInfo(usage).then(
